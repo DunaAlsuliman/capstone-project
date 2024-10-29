@@ -41,4 +41,3 @@ jobs:
             dunaalsulaiman/capstone-project:${{ github.sha }}
           cache-from: dunaalsulaiman/capstone-project:latest
           cache-to: type=inline
-
