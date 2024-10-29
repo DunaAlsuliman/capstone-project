@@ -31,8 +31,7 @@ jobs:
           ssh -i ~/.ssh/github_actions $SSH_USERNAME@${{ matrix.server }} << 'EOF' 
             docker stop $(docker ps -q --filter 'publish=80')
             docker rm $(docker ps -q --filter 'publish=80')
-            cd /capstone-project 
             docker pull dunaalsulaiman/capstone-project:latest
-            docker run -d -p 80:5000 --env-file .env dunaalsulaiman/capstone-project:latest
+            docker run -d -p 80:5000 --env-file /capstone-project/.env dunaalsulaiman/capstone-project:latest
 
           EOF
