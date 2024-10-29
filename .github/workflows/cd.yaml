@@ -33,3 +33,4 @@ jobs:
             docker pull dunaalsulaiman/capstone-project:latest
             docker run -d -p 80:5000 dunaalsulaiman/capstone-project:latest
           EOF
+
