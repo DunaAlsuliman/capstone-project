@@ -34,5 +34,4 @@ jobs:
             cd /capstone-project 
             docker pull dunaalsulaiman/capstone-project:latest
             docker run -d -p 80:5000 --env-file .env dunaalsulaiman/capstone-project:latest
-
           EOF
