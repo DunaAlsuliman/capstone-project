@@ -12,8 +12,8 @@ jobs:
     strategy:
       matrix:
         server: 
-          - SERVER_1_HOST
-          - SERVER_2_HOST
+          - ${{ vars.SERVER_1_HOST }}
+          - ${{ vars.SERVER_2_HOST }}
 
     steps:
 
@@ -23,11 +23,13 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
         run: |
-          ssh-keyscan ${{ secrets[matrix.server] }} >> ~/.ssh/known_hosts
+          ssh-keyscan ${{ matrix.server }} >> ~/.ssh/known_hosts
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/github_actions
           chmod 600 ~/.ssh/github_actions
 
       - name: Pull & Deploy
         run: |
-          docker pull dunaalsulaiman/capstone-project:latest
-          ssh -i ~/.ssh/github_actions $SSH_USERNAME@${{ secrets[matrix.server] }} "docker run -d -p 80:5000 dunaalsulaiman/capstone-project:latest"
+          ssh -i ~/.ssh/github_actions $SSH_USERNAME@${{ matrix.server }} 
+          docker pull dunaalsulaiman/capstone-project:latest 
+          docker run -d -p 80:5000 dunaalsulaiman/capstone-project:latest
+          
