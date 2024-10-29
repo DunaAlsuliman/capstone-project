@@ -12,8 +12,8 @@ jobs:
     strategy:
       matrix:
         server: 
-          - ${{ secrets.SERVER_1_HOST }}
-          - ${{ secrets.SERVER_2_HOST }}
+          - SERVER_1_HOST
+          - SERVER_2_HOST
 
     steps:
 
@@ -30,4 +30,4 @@ jobs:
       - name: Pull & Deploy
         run: |
           docker pull dunaalsulaiman/capstone-project:latest
-          ssh -i ~/.ssh/github_actions $SSH_USERNAME@${{ matrix.server }} "docker run -d -p 80:5000 dunaalsulaiman/capstone-project:latest"
+          ssh -i ~/.ssh/github_actions $SSH_USERNAME@${{ secrets[matrix.server] }} "docker run -d -p 80:5000 dunaalsulaiman/capstone-project:latest"
