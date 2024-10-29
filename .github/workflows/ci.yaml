@@ -10,6 +10,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Set up Environment Variables
+        run: echo "REDIS_HOST=redis" >> .env
+
       - name: Running Unit Tests
         run: |
           docker compose run test 
@@ -38,4 +41,3 @@ jobs:
             dunaalsulaiman/capstone-project:${{ github.sha }}
           cache-from: dunaalsulaiman/capstone-project:latest
           cache-to: type=inline
-
