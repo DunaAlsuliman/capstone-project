@@ -29,4 +29,8 @@ jobs:
 
       - name: Pull & Deploy
         run: |
-          ssh -i ~/.ssh/github_actions $SSH_USERNAME@${{ secrets[matrix.server] }} "docker pull dunaalsulaiman/capstone-project:latest && docker run -d -p 80:5000 dunaalsulaiman/capstone-project:latest"
+          ssh -i ~/.ssh/github_actions $SSH_USERNAME@${{ secrets[matrix.server] }} << 'EOF'
+            docker pull dunaalsulaiman/capstone-project:latest
+            docker run -d -p 80:5000 dunaalsulaiman/capstone-project:latest
+          EOF
+
