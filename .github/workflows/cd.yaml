@@ -34,4 +34,3 @@ jobs:
           cd /capstone-project && docker run -d -p 80:5000 --name web  --env-file .env dunaalsulaiman/capstone-project:latest
           EOF
 
-
