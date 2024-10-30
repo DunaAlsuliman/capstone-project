@@ -19,6 +19,7 @@ services:
 
   db:
     image: mysql:latest
+    env_file: .env
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword  
       MYSQL_DATABASE: mydatabase          
