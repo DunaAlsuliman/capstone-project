@@ -30,8 +30,8 @@ jobs:
           echo "running in ${{ matrix.server }}" 
           ssh -i ~/.ssh/github_actions $SSH_USERNAME@${{ matrix.server }} << 'EOF' 
             docker stop $(docker ps -q --filter 'publish=80')
-            docker rm $(docker ps -q --filter 'publish=80')
             docker pull dunaalsulaiman/capstone-project:latest
-            docker run -d -p 80:5000 --env-file /capstone-project/.env dunaalsulaiman/capstone-project:latest
+            sed -i 's/build: \./image: dunaalsulaiman\/capstone-project:latest/' /capstone-project/docker-compose.yaml
+            docker compose up --build -d
 
           EOF
