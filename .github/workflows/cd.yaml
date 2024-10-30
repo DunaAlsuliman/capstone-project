@@ -24,7 +24,7 @@ jobs:
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
 
         run: |
-          ssh-keyscan ${{ matrix.server }} >> ~/.ssh/known_hosts
+
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/github_actions
           chmod 600 ~/.ssh/github_actions
           echo "running in ${{ matrix.server }}" 
