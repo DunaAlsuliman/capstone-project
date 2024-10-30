@@ -24,9 +24,9 @@ jobs:
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
 
         run: |
-          ssh-keyscan ${{ matrix.server }} >> ~/.ssh/known_hosts
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/github_actions
-          chmod 600 ~/.ssh/github_actions
+          # ssh-keyscan ${{ matrix.server }} >> ~/.ssh/known_hosts
+          # echo "$SSH_PRIVATE_KEY" > ~/.ssh/github_actions
+          # chmod 600 ~/.ssh/github_actions
           echo "running in ${{ matrix.server }}" 
           ssh -i ~/.ssh/github_actions $SSH_USERNAME@${{ matrix.server }} << 'EOF' 
           docker pull dunaalsulaiman/capstone-project:latest
