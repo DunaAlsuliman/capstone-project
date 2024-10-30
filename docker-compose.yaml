@@ -5,6 +5,7 @@ services:
       - "80:5000" 
     env_file: .env
     environment:
+      DB_HOST: db
       DB_USER: user
       DB_PASSWORD: password
       DB_NAME: mydatabase
@@ -19,7 +20,6 @@ services:
 
   db:
     image: mysql:latest
-    env_file: .env
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword  
       MYSQL_DATABASE: mydatabase          
