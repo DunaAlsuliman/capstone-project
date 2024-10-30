@@ -29,10 +29,9 @@ jobs:
           chmod 600 ~/.ssh/github_actions
           echo "running in ${{ matrix.server }}" 
           ssh -i ~/.ssh/github_actions $SSH_USERNAME@${{ matrix.server }} << 'EOF' 
-          docker rm -f web
           docker pull dunaalsulaiman/capstone-project:latest
+          docker rm -f web
           cd /capstone-project && docker run -d -p 80:5000 --name web  --env-file .env dunaalsulaiman/capstone-project:latest
-
           EOF
 
 
