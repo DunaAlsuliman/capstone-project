@@ -31,4 +31,3 @@ services:
   test:
     build: .
     command: python -m unittest
-
